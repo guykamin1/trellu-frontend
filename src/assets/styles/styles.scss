@@ -1,0 +1,25 @@
+// SETUP
+@import "base/app";
+@import "setup/variables";
+@import "setup/mixins";
+@import "setup/functions";
+
+// BASICS
+@import "basics/helpers";
+
+// PAGES
+@import "pages/trellu-home";
+@import "pages/trellu-workspace";
+@import "pages/trellu-login";
+@import "pages/trellu-board";
+
+
+// COMPONENTS
+@import "cmps/trellu-header";
+@import "cmps/board-list";
+@import "cmps/board-preview";
+@import "cmps/group-list";
+@import "cmps/group-preview";
+@import "cmps/task-list";
+@import "cmps/task-preview";
+
