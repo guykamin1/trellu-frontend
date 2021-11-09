@@ -27,7 +27,7 @@ export const BoardPreview = ({ board }) => {
     >
       {<span>{board.title}</span>}
 
-      <button onClick={onRemove}>X</button>
+      <button onClick={onRemove}>x</button>
     </section>
   );
 };

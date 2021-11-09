@@ -1,7 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import { useDispatch } from "react-redux";
+import PersonIcon from '@mui/icons-material/Person';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import LogoutIcon from '@mui/icons-material/Logout';
+import HomeIcon from '@mui/icons-material/Home';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 import { logout } from "../store/actions/user.actions";
 
@@ -13,31 +17,43 @@ export const TrelluHeader = () => {
   return (
     <section className="trellu-header flex">
       <div className="links grow flex center-center gap">
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/workspace">Boards</NavLink>
+        <NavLink to="/">
+          <HomeIcon
+          style={{
+            color:'black'
+          }}
+          />
+        </NavLink>
+        <NavLink to="/workspace">
+          <DashboardIcon
+          style={{
+            color:'black'
+          }}
+          />
+        </NavLink>
       </div>
 
       <div className="logo grow flex center-center ">
         <h1>Trellu</h1>
       </div>
 
-      {loggedUser && (
-        <div className="greet flex center-center">
-          <h3>Hello {loggedUser.fullname}</h3>
-        </div>
-      )}
+     
 
       <div className="options grow flex center-center gap">
         {loggedUser ? (
           <>
-            <button>Notifications</button>
-            <button>Avatar</button>
+            <button>
+              <NotificationsIcon/>
+            </button>
+            <button>
+              <PersonIcon/>
+            </button>
             <button
               onClick={() => {
                 dispatch(logout());
               }}
             >
-              Logout
+              <LogoutIcon/>
             </button>
           </>
         ) : (

@@ -1,7 +1,11 @@
+import { utilService } from "./util.service"
 
 
 export const boardUtils = {
-    getBgs
+    getBgs,
+    getBoard,
+    getGroup,
+    getTask
 }
 
 export function getBgs(){
@@ -19,4 +23,86 @@ export function getBgs(){
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRchaM8cNhmN8BCp-2ipQ8Wf3Voi8A-5rXUkA&usqp=CAU',
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoBEQl-kgm0UhF3KZlQKWe2RAm--zF4NYfmw&usqp=CAU'
     ]
+}
+
+function getTask(user){
+    return {
+        "id" : `t-${utilService.makeId()}`,
+        "title" : "Task",
+        "description" : "task",
+        "createdAt" : Date.now(),
+        "createdBy" : user,
+        "style" : {
+            "coverMode" : "",
+            "bgColor" : ""
+        },
+        "labelIds" : [],
+        "members" : [],
+        "dueDate" : null,
+        "isDone" : false
+    }
+}
+
+function getGroup(user){
+    return {
+        "id" : `g-${utilService.makeId()}`,
+        "title" : "Group",
+        "description":"group",
+        "createdAt":Date.now(),
+        "createdBy":user,
+        "tasks" : [getTask(user),getTask(user),getTask(user)],
+        "style" : {
+            "bgImg" : "",
+            "bgClr" : ""
+        }
+    }
+}
+
+ function getBoard(boardTitle,bg,loggedUser){
+    return {
+        "title" : `${boardTitle}`,
+        "description":"board",
+        "createdAt" : Date.now(),
+        "createdBy" : loggedUser,
+        "groups" : [getGroup(loggedUser),getGroup(loggedUser),getGroup(loggedUser)],
+        "labels" : [ 
+            {
+                "title" : "Done",
+                "color" : "#61bd4f",
+                "id" : "Wg7a1W"
+            }, 
+            {
+                "title" : "Important",
+                "color" : "#334563",
+                "id" : "6UZlzw"
+            }, 
+            {
+                "title" : "In Progress",
+                "color" : "#c277e0",
+                "id" : "kv9aO3"
+            }, 
+            {
+                "title" : "Meeting",
+                "color" : "#f2d600",
+                "id" : "yp1H2V"
+            }, 
+            {
+                "title" : "Urgent",
+                "color" : "#ff9e1a",
+                "id" : "PXYKmg"
+            }, 
+            {
+                "title" : "On hold",
+                "color" : "#eb5a46",
+                "id" : "6W2ZZx"
+            }
+        ],
+        "activities" : [],
+        "members" : [],
+        "style" : {
+            "bgClr" : "",
+            "bgImg" : `${bg}`
+        },
+        "isFavorite" : false
+    }
 }

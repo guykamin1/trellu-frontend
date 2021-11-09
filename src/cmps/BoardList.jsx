@@ -17,9 +17,10 @@ export const BoardList = ({ boards }) => {
   const [boardTitle, setBoardTitle] = useState("");
 
   const onAdd = () => {
-    if (loggedUser) {
-      if (boardTitle) dispatch(addBoard(boardTitle, bg, loggedUser));
-    } else alert("Logged in first!");
+      if (boardTitle)
+       dispatch(addBoard(boardTitle, bg, loggedUser));
+       setAddMode(false)
+       setBg('')
   };
 
   return (
@@ -38,7 +39,9 @@ export const BoardList = ({ boards }) => {
           <span
             className="add-btn"
             onClick={() => {
+              if (loggedUser)
               setAddMode(true);
+              else alert('Logged in first!')
             }}
           >
             +

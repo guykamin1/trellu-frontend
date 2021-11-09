@@ -1,5 +1,6 @@
 import { boardService } from "../../services/board.service"
-
+import {boardUtils} from '../../services/board-utils'
+//board
 export function loadBoards() {
     return async dispatch => {
         try {
@@ -26,7 +27,9 @@ export function loadBoard(id) {
 export function addBoard(boardTitle,bg,loggedUser) {
     return async dispatch => {
         try {
-            console.log(boardTitle,bg,loggedUser);
+            const boardToSave = boardUtils.getBoard(boardTitle,bg,loggedUser)
+            const savedBoard = await boardService.add(boardToSave)
+            dispatch({type:'ADD_BOARD',savedBoard})
         
         } catch (err) {
             console.log('UserActions: err in add board', err)
@@ -41,6 +44,31 @@ export function removeBoard(board) {
          dispatch({type:'REMOVE_BOARD',board})
         } catch (err) {
             console.log('UserActions: err in remove board', err)
+        } 
+    }
+}
+//group
+export function removeGroup(boardId,groupId) {
+    return async dispatch => {
+        try {
+            const board = await boardService.removeGroup(boardId,groupId)
+            dispatch({type:'SET_BOARD',board})
+            
+        } catch (err) {
+            console.log('UserActions: err in remove group', err)
+        } 
+    }
+}
+
+export function addGroup(boardId,title,loggedUser) {
+    return async dispatch => {
+        try {
+
+            const board = await boardService.addGroup(boardId,title,loggedUser)
+            dispatch({type:'SET_BOARD',board})
+           
+        } catch (err) {
+            console.log('UserActions: err in remove group', err)
         } 
     }
 }

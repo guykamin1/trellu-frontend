@@ -29,8 +29,8 @@ export const AddBoard = ({
       </div>
 
       <div className="body flex wrap">
-        {boardUtils.getBgs().map((bg) => (
-          <div
+        {boardUtils.getBgs().map((bg,idx) => (
+          <div key={idx}
             onClick={() => {
               setBg(bg);
             }}
