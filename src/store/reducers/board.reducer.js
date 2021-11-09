@@ -15,6 +15,10 @@ export function boardReducer(state = initialState, action) {
         case 'SET_BOARD':
             newState = {...state,board:action.board}
             break
+
+        case 'REMOVE_BOARD':
+            newState = {...state,boards:state.boards.filter(board => board._id !== action.board._id)}
+            break
       
         default:
     }

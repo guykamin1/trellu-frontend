@@ -1,0 +1,49 @@
+.add-board{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px black solid;
+    height: 25%;
+    width: 30%;
+
+    .add-btn{
+    font-size: 1000%;
+    }
+
+    .cmp{
+        width: 80%;
+        height: 100%;
+        .head{
+            border: 1px black solid;
+            width: 100%;
+            height: 20%;
+            input{
+                width: 70%;
+            }
+            button{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 15%;
+            }
+        }
+        .body{
+            border: 1px black solid;
+            width: 100%;
+            height: 80%;
+            .option{
+                border: 1px black solid;
+                height: 33.333%;
+                width: 25%;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+
+
+}

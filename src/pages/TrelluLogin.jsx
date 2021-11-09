@@ -76,7 +76,9 @@ export const TrelluLogin = () => {
                   type="text"
                 />
               )}
-              <button className="switch-btn">{isLogin ? "Login" : "Signup"}</button>
+              <button className="switch-btn">
+                {isLogin ? "Login" : "Signup"}
+              </button>
             </form>
           </div>
         }

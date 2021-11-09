@@ -20,7 +20,7 @@ export class RootCmp extends Component {
             <TrelluHeader/>
                 </header>
 
-                <main className="main-container">
+                <main className="main-container flex center-center">
                     <Switch>
                         {routes.map(route => <Route key={route.path} exact component={route.component} path={route.path} />)}
                     </Switch>

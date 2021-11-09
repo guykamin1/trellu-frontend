@@ -2,4 +2,23 @@
     width: 33.333%;
     height: 100%;
     border: 1px black solid;
+    .group-footer{
+        width: 100%;
+
+        .add{
+            border: 1px black solid;
+            width: 80%;
+            button{
+                width: 20%;
+            }
+            input{
+                width: 80%;
+            }
+        }
+
+        .av{
+            width: 20%;
+        }
+        
+    }
 }

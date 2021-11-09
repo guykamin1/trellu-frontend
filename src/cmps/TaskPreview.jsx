@@ -1,7 +1,3 @@
-export const TaskPreview = ({task}) => {
-    return <section className="task-preview">
-       {
-           task.title
-       }
-    </section>
-}
+export const TaskPreview = ({ task }) => {
+  return <section className="task-preview">{task.title}</section>;
+};

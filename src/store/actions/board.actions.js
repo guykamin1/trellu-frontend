@@ -16,10 +16,31 @@ export function loadBoard(id) {
     return async dispatch => {
         try {
          const board = await boardService.get(id)
-         console.log(board);
          dispatch({type:'SET_BOARD',board})
         } catch (err) {
-            console.log('UserActions: err in load boards', err)
+            console.log('UserActions: err in load board', err)
+        } 
+    }
+}
+
+export function addBoard(boardTitle,bg,loggedUser) {
+    return async dispatch => {
+        try {
+            console.log(boardTitle,bg,loggedUser);
+        
+        } catch (err) {
+            console.log('UserActions: err in add board', err)
+        } 
+    }
+}
+
+export function removeBoard(board) {
+    return async dispatch => {
+        try {
+         await boardService.remove(board._id)
+         dispatch({type:'REMOVE_BOARD',board})
+        } catch (err) {
+            console.log('UserActions: err in remove board', err)
         } 
     }
 }
