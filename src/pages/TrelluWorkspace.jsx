@@ -14,7 +14,7 @@ export const TrelluWorkspace = () => {
   return (
     <section className="trellu-workspace flex column align-center">
       <div className="title">
-        <h1>Your Workspace</h1>
+        <span className="title">Your Workspace</span>
       </div>
 
       {boards && <BoardList boards={boards} />}

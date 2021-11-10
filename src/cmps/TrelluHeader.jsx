@@ -1,13 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import PersonIcon from '@mui/icons-material/Person';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-
 import { logout } from "../store/actions/user.actions";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import { AvatarMenu } from "./AvatarMenu";
 
 export const TrelluHeader = () => {
   const dispatch = useDispatch();
@@ -16,11 +15,11 @@ export const TrelluHeader = () => {
 
   return (
     <section className="trellu-header flex">
-      <div className="links grow flex center-center gap">
+      <div className="links grow flex align-center gap">
         <NavLink to="/">
           <HomeIcon
           style={{
-            color:'black'
+            color:'black',
           }}
           />
         </NavLink>
@@ -34,20 +33,22 @@ export const TrelluHeader = () => {
       </div>
 
       <div className="logo grow flex center-center ">
-        <h1>Trellu</h1>
+        <NavLink to="/"><span className="logo">Trellu</span></NavLink>
       </div>
 
      
 
-      <div className="options grow flex center-center gap">
+      <div className="options grow flex align-center justify-end gap">
         {loggedUser ? (
           <>
-            <button>
-              <NotificationsIcon/>
-            </button>
-            <button>
-              <PersonIcon/>
-            </button>
+          <NotificationsIcon
+          style={{
+            color:'black'
+          }}
+          />
+
+           <AvatarMenu/>
+
             <button
               onClick={() => {
                 dispatch(logout());

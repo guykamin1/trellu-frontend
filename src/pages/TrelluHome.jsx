@@ -3,18 +3,16 @@ import { NavLink } from "react-router-dom";
 export const TrelluHome = () => {
 
   return (
-    <section className="trellu-home flex">
-      <div className="info flex column center-center">
-        <span>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem
-          atque delectus ut, eligendi, ipsum fugiat aliquam, natus quibusdam
-          reiciendis molestiae cupiditate ullam consequuntur illum ipsa
-          voluptatibus nesciunt aliquid quo mollitia.
+    <section className="trellu-home flex ">
+
+      <div className="info flex column center-center gap">
+        <span className="description">
+        Trelleu helps teams move work forward.
         </span>
-        <h1>
+        <span className="demo">
           {" "}
           <NavLink to="/workspace">To Demo</NavLink>{" "}
-        </h1>
+        </span>
       </div>
 
       <div className="picture flex center-center">

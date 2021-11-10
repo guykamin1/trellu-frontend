@@ -50,8 +50,8 @@ export const TrelluLogin = () => {
     <section className="trellu-login flex center-center">
       <div className="login-signup flex center-center column">
         {
-          <div>
-            {isLogin ? <h1>Login</h1> : <h1>Signup</h1>}
+          <div className="flex column gap">
+            {isLogin ? <span className="title">Login</span> : <span className="title">Signup</span>}
             <form onSubmit={handleSubmit} className="flex column gap">
               <input
                 onChange={handleChange}
@@ -84,9 +84,9 @@ export const TrelluLogin = () => {
         }
 
         {isLogin ? (
-          <h4 onClick={toggleLogin}>Or signup...</h4>
+          <span className="or" onClick={toggleLogin}>Or signup...</span>
         ) : (
-          <h4 onClick={toggleLogin}>Or login...</h4>
+          <span className="or" onClick={toggleLogin}>Or login...</span>
         )}
       </div>
     </section>

@@ -17,14 +17,14 @@ export const AddBoard = ({
           placeholder="Board title"
           type="text"
         />
-        <button onClick={onAdd}>Add</button>
+        <button onClick={onAdd}>+</button>
         <button
           onClick={() => {
             setAddMode(false);
             setBg("");
           }}
         >
-          X
+          x
         </button>
       </div>
 

@@ -21,7 +21,8 @@ export const TrelluBoard = () => {
      style={{
        backgroundImage:`url(${board?.style.bgImg})`,
        backgroundRepeat:'no-repeat',
-       backgroundSize:'cover'
+       backgroundSize:'cover',
+
      }}
      >
        <BoardOptions/>

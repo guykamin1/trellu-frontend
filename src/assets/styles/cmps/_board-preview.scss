@@ -1,11 +1,14 @@
 .board-preview{
     display: flex;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px;
     justify-content: space-between;
     align-items: flex-start;
-    color:white;
     width: 25%;
     height: 25%;
     background-size: cover;
     background-repeat: no-repeat;
     cursor: pointer;
+   
+   
 }
