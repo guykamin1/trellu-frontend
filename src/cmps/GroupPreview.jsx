@@ -1,15 +1,18 @@
 import { TaskList } from "./TaskList";
 import { useSelector,useDispatch } from "react-redux";
-import { removeGroup } from "../store/actions/board.actions";
+import { removeGroup,renameGroup } from "../store/actions/board.actions";
 import {GroupMenu} from './GroupMenu'
 import AudiotrackIcon from '@mui/icons-material/Audiotrack';
 import VideocamIcon from '@mui/icons-material/Videocam';
+import { useState,useRef } from "react";
 
 export const GroupPreview = ({ group }) => {
   
   const dispatch = useDispatch()
   const board = useSelector(state => state.boardModule.board)
   const loggedUser = useSelector(state => state.userModule.loggedUser)
+  const [groupTitle, setTitle] = useState(group.title)
+  const titleRef = useRef()
 
   const onRemove = () => {
     if (loggedUser)
@@ -18,12 +21,22 @@ export const GroupPreview = ({ group }) => {
       alert('Log in first!')
   }
 
+  const handleChange = (ev) => {
+    setTitle(ev.target.value)
+  }
+
+  const onBlur = () => {
+    dispatch(renameGroup(board._id,group.id,groupTitle))
+  }
+
   return (
     <section className="group-preview flex column gap">
       <div className="group-header flex space-between">
-        <span>{group.title}</span>
+        <span>
+          <input ref={titleRef} onBlur={onBlur} onChange={handleChange} value={groupTitle} type="text" />
+        </span>
 
-    <GroupMenu onRemove={onRemove}/>
+    <GroupMenu titleRef={titleRef} onRemove={onRemove}/>
 
       </div>
 

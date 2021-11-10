@@ -4,7 +4,7 @@ import { Menu, MenuItem } from "@mui/material";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 
-export const GroupMenu = ({onRemove,titleRef}) => {
+export const BoardMenu = ({titleRef}) => {
 
   const [anchorEl, setAnchor] = useState(null);
     const loggedUser = useSelector(state => state.userModule.loggedUser)
@@ -19,7 +19,7 @@ export const GroupMenu = ({onRemove,titleRef}) => {
 
   return (
     <>
-     <span onClick={handleClick}><MoreHorizIcon/></span>
+     <span className="icon" onClick={handleClick}><MoreHorizIcon/></span>
       <Menu
         id="group-menu"
         anchorEl={anchorEl}
@@ -29,19 +29,13 @@ export const GroupMenu = ({onRemove,titleRef}) => {
        
       >
         <MenuItem
-        onClick={()=>{
-          handleClose()
-          setTimeout(() => {
-            titleRef.current.focus()
-          }, 0);
+        onClick={() => {
+            handleClose()
+            setTimeout(() => {
+                titleRef.current.focus()
+            }, 0);
         }}
         >Rename</MenuItem>
-       <MenuItem onClick={
-           () => {
-            onRemove()
-            handleClose()
-           }
-       }>Remove</MenuItem>
       </Menu>
     </>
   );

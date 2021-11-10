@@ -25,7 +25,7 @@ export const BoardList = ({ boards }) => {
 
   return (
     <section className="board-list flex gap wrap">
-      {boards.map((board) => (
+      {boards.sort((a,b) => b.isFavorite - a.isFavorite).map((board) => (
         <BoardPreview board={board} key={board._id} />
       ))}
 

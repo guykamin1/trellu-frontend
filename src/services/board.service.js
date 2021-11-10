@@ -7,9 +7,12 @@ export const boardService = {
     update,
     remove,
     add,
+    renameBoard,
+    toggleFavorite,
     //group
     removeGroup,
-    addGroup
+    addGroup,
+    renameGroup,
 }
 //board
 async function query(){
@@ -51,6 +54,28 @@ async function remove(id){
         throw(err)
     }
 } 
+
+async function renameBoard(boardId,title){
+    try{
+        const board = await get(boardId)
+        board.title = title
+        return await httpService.put(`board`,board)
+    }catch(err){
+        throw(err)
+    }
+} 
+
+async function toggleFavorite(boardId){
+    try{
+        const board = await get(boardId)
+        board.isFavorite = !board.isFavorite
+        return await httpService.put(`board`,board)
+    }catch(err){
+        throw(err)
+    }
+} 
+
+
 //group
 async function removeGroup(boardId,groupId){
     try{
@@ -73,6 +98,18 @@ async function addGroup(boardId,title,loggedUser){
         board.groups.unshift(newGroup)
         return await httpService.put(`board`,board)
 
+    }catch(err){
+        throw(err)
+    }
+} 
+
+async function renameGroup(boardId,groupId,title){
+    try{
+
+        const board = await get(boardId)
+        const idx = board.groups.findIndex(group => group.id === groupId)
+        board.groups[idx].title = title
+        return await httpService.put(`board`,board)
     }catch(err){
         throw(err)
     }

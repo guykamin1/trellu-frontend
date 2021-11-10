@@ -7,6 +7,13 @@
     .group-header{
         box-shadow: 0px 0px 3px 0px;
         border-radius: 5px;
+        input{
+            border: none;
+            background-color: transparent;
+            font-size: 1rem;
+            font-style: italic;
+            font-weight: bold;
+        }
     }
     .group-footer{
         width: 100%;
