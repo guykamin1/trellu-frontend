@@ -1,4 +1,8 @@
 import { useSelector } from "react-redux"
+import StarsIcon from '@mui/icons-material/Stars';
+import GroupIcon from '@mui/icons-material/Group';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import BarChartIcon from '@mui/icons-material/BarChart';
 
 export const BoardOptions = () => {
 
@@ -7,20 +11,20 @@ export const BoardOptions = () => {
     return <section className="board-options flex space-between">
 
         <div className="options flex gap center-center">
-            <span>
+            <span class="title">
         {
             board?.title
         }
             </span>
 
-            <button>favorite</button>
-            <button>members</button>
+            <span className="icon"><StarsIcon/></span>
+            <span className="icon"><GroupIcon/></span>
 
         </div>
 
         <div className="options2 flex gap center-center">
-        <button>charts</button>
-        <button>menu</button>
+        <span className="icon"><BarChartIcon/></span>
+        <span className="icon"><MoreHorizIcon/></span>
         </div>
 
     </section>

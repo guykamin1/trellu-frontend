@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { removeBoard } from "../store/actions/board.actions";
 
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+
 export const BoardPreview = ({ board }) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -25,9 +27,9 @@ export const BoardPreview = ({ board }) => {
         backgroundImage: `url(${board.style.bgImg})`,
       }}
     >
-      {<span>{board.title}</span>}
+      {<span className="title">{board.title}</span>}
 
-      <button onClick={onRemove}>x</button>
+      <button className="remove" onClick={onRemove}><RemoveCircleIcon/></button>
     </section>
   );
 };

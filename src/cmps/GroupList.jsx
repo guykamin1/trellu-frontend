@@ -29,14 +29,24 @@ export const GroupList = ({ groups }) => {
               else alert('Log in first!')
             }
           }>+</span> : 
-          <div className="cmp flex">
+          <div className="cmp flex column">
+
+            <div className="head flex justify-end">
+
+             <button onClick={
+               () => {setAddGroup(false)}
+              }>x</button>
+
+              </div>
+              <div className="body flex column center-center">
+
             <input onChange={
               (ev) => {setTitle(ev.target.value)}
             } value={title} placeholder="Group title" type="text" />
             <button onClick={onAdd}>Add</button>
-            <button onClick={
-            () => {setAddGroup(false)}
-          }>x</button>
+           
+            </div>
+
           </div>
         }
       </div>

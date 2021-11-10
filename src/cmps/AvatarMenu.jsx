@@ -27,13 +27,14 @@ export const AvatarMenu = () => {
         }}
       />
       <Menu
-        id="menu"
+        id="avatar-menu"
         anchorEl={anchorEl}
         // keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
         <MenuItem
+        onClick={handleClose}
         style={{
             display:'flex',
             gap:'5px'

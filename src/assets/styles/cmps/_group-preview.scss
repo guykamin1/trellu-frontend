@@ -1,23 +1,40 @@
 .group-preview{
+    background-color: $color9;
     width: 33.333%;
     height: 100%;
-    border: 1px black solid;
+    box-shadow: 0px 0px 5px 0px;
+    border-radius: 5px;
+    .group-header{
+        box-shadow: 0px 0px 3px 0px;
+        border-radius: 5px;
+    }
     .group-footer{
         width: 100%;
-
+        box-shadow: 0px 0px 3px 0px;
+        border-radius: 5px;
         .add{
-            border: 1px black solid;
+            
             width: 80%;
-            button{
-                width: 20%;
-            }
-            input{
-                width: 80%;
-            }
+
+          .add-btn{
+            font-size: 1rem;
+              width: 10%;
+          }
+
+          .add-input{
+              width: 90%;
+          }
+
         }
 
         .av{
             width: 20%;
+            .audio{
+                width: 50%;
+            }
+            .video{
+                width: 50%;
+            }
         }
         
     }

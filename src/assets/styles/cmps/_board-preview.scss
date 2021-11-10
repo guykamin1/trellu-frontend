@@ -9,6 +9,13 @@
     background-size: cover;
     background-repeat: no-repeat;
     cursor: pointer;
-   
-   
+    .title{
+        color: $color6;
+        font-size: 2rem;
+    }
+    .remove{
+        color: $color6;
+        font-size: 2rem;
+
+    }
 }

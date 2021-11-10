@@ -1,6 +1,10 @@
 import { TaskList } from "./TaskList";
 import { useSelector,useDispatch } from "react-redux";
 import { removeGroup } from "../store/actions/board.actions";
+import {GroupMenu} from './GroupMenu'
+import AudiotrackIcon from '@mui/icons-material/Audiotrack';
+import VideocamIcon from '@mui/icons-material/Videocam';
+
 export const GroupPreview = ({ group }) => {
   
   const dispatch = useDispatch()
@@ -19,20 +23,33 @@ export const GroupPreview = ({ group }) => {
       <div className="group-header flex space-between">
         <span>{group.title}</span>
 
-        <button onClick={onRemove}>x</button>
+    <GroupMenu onRemove={onRemove}/>
+
       </div>
 
       {group.tasks.length && <TaskList tasks={group.tasks} />}
 
       <div className="group-footer flex space-between">
         <div className="add flex">
-          <button>+</button>
-          <input placeholder="Add a task" type="text" />
+
+          <span className="add-btn flex center-center"
+          
+          >+</span>
+
+          <input className="add-input" placeholder="Add a task" type="text" />
         </div>
 
         <div className="av flex center-center">
-          <small>A</small>
-          <small>V</small>
+          <span className="audio flex center-center"><AudiotrackIcon
+          style={{
+            fontSize:'1rem'
+          }}
+          /></span>
+          <span className="video flex center-center" ><VideocamIcon
+           style={{
+            fontSize:'1rem'
+          }}
+          /></span>
         </div>
       </div>
     </section>
