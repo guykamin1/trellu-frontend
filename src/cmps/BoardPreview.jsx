@@ -11,11 +11,9 @@ import StarsIcon from "@mui/icons-material/Stars";
 export const BoardPreview = ({ board }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const loggedUser = useSelector((state) => state.userModule.loggedUser);
   const onRemove = (ev) => {
     ev.stopPropagation();
-    if (loggedUser) dispatch(removeBoard(board));
-    else alert("Logged in first!");
+    dispatch(removeBoard(board));
   };
 
   const onFavorite = (ev) => {

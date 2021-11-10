@@ -25,8 +25,7 @@ export const GroupList = ({ groups }) => {
         {
           !isAddGroup? <span onClick={
             () => {
-              if (loggedUser) setAddGroup(true)
-              else alert('Log in first!')
+               setAddGroup(true)
             }
           }>+</span> : 
           <div className="cmp flex column">

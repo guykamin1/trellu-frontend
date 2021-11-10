@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { Menu, MenuItem } from "@mui/material";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-
+import { removeBoard } from "../store/actions/board.actions";
 
 export const BoardMenu = ({titleRef}) => {
 
   const [anchorEl, setAnchor] = useState(null);
-    const loggedUser = useSelector(state => state.userModule.loggedUser)
+    const board = useSelector(state => state.boardModule.board)
+    const dispatch = useDispatch()
 
   const handleClose = () => {
     setAnchor(null);
@@ -16,6 +17,10 @@ export const BoardMenu = ({titleRef}) => {
   const handleClick = (ev) => {
     setAnchor(ev.currentTarget);
   };
+
+  const onRemove = () => {
+    dispatch(removeBoard(board))
+  }
 
   return (
     <>
@@ -28,6 +33,9 @@ export const BoardMenu = ({titleRef}) => {
         onClose={handleClose}
        
       >
+        <span className="menu-title flex center-center">
+          Board actions
+        </span>
         <MenuItem
         onClick={() => {
             handleClose()
@@ -36,6 +44,13 @@ export const BoardMenu = ({titleRef}) => {
             }, 0);
         }}
         >Rename</MenuItem>
+        <MenuItem
+        onClick={()=>{
+          handleClose()
+          onRemove()
+        }}
+        >Remove</MenuItem>
+       
       </Menu>
     </>
   );

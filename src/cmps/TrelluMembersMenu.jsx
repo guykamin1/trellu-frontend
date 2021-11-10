@@ -27,7 +27,7 @@ export const TrelluMembersMenu = () => {
   }
 
   const exist = (user) => {
-      const idx = board.members.findIndex(curr => curr._id === user._id)
+      const idx = board?.members.findIndex(curr => curr._id === user._id)
       if (idx === -1) return false
       else return true
   }
@@ -43,6 +43,7 @@ export const TrelluMembersMenu = () => {
         onClose={handleClose}
        
       >
+        <span className="menu-title flex center-center">Trellu members</span>
           {
               users?.map(user => {
                   return <MenuItem

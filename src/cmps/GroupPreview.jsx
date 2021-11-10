@@ -16,10 +16,7 @@ export const GroupPreview = ({ group }) => {
   const titleRef = useRef()
 
   const onRemove = () => {
-    if (loggedUser)
       dispatch(removeGroup(board._id,group.id))
-    else
-      alert('Log in first!')
   }
 
   const taskHandleChange = (ev) => {

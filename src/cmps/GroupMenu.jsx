@@ -28,6 +28,9 @@ export const GroupMenu = ({onRemove,titleRef}) => {
         onClose={handleClose}
        
       >
+        <span className="menu-title flex center-center">
+          Group actions
+        </span>
         <MenuItem
         onClick={()=>{
           handleClose()

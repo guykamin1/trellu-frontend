@@ -199,5 +199,15 @@ $color8:rgba(243, 209, 147, 0.7);
 $color9:#f8f0dfd2;
 $color10:#f8f0df8f;
 $color11:#f8f0df3b;
+$color12:rgb(252, 189, 73);
 
+
+
+.menu-title{
+  padding-inline: 5px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: $color12;
+}
 

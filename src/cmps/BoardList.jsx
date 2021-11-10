@@ -39,9 +39,7 @@ export const BoardList = ({ boards }) => {
           <span
             className="add-btn"
             onClick={() => {
-              if (loggedUser)
               setAddMode(true);
-              else alert('Logged in first!')
             }}
           >
             +

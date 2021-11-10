@@ -5,18 +5,19 @@ import { loadBoard } from "../store/actions/board.actions";
 import { GroupList } from "../cmps/GroupList";
 import { BoardOptions } from "../cmps/BoardOptions";
 import {loadUsers} from '../store/actions/user.actions'
-
+import { useHistory } from "react-router";
 export const TrelluBoard = () => {
   const dispatch = useDispatch();
 
   const board = useSelector((state) => state.boardModule.board);
-
+  const history = useHistory()
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(loadBoard(id));
     dispatch(loadUsers());
-  }, []);
+    if(!board) history.push('/workspace')
+  }, [board]);
 
   return (
     <section

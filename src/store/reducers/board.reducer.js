@@ -23,6 +23,8 @@ export function boardReducer(state = initialState, action) {
         ...state,
         boards: state.boards.filter((board) => board._id !== action.board._id),
       };
+      if (action.board === state.board)
+        newState = {...state,board:null}
       break;
 
     default:
