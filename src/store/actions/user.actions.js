@@ -1,5 +1,21 @@
 import { userService } from "../../services/user.service"
 
+export function loadUsers() {
+    return async dispatch => {
+        try {
+
+            const users = await userService.query()
+
+
+             dispatch({type:'SET_USERS',users})
+              
+            
+        } catch (err) {
+            console.log('UserActions: err in login', err)
+        } 
+    }
+}
+
 export function login(creds) {
     return async dispatch => {
         try {

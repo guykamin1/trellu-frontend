@@ -1,6 +1,6 @@
 import { TaskList } from "./TaskList";
 import { useSelector,useDispatch } from "react-redux";
-import { removeGroup,renameGroup } from "../store/actions/board.actions";
+import { removeGroup,renameGroup,addTask } from "../store/actions/board.actions";
 import {GroupMenu} from './GroupMenu'
 import AudiotrackIcon from '@mui/icons-material/Audiotrack';
 import VideocamIcon from '@mui/icons-material/Videocam';
@@ -11,7 +11,8 @@ export const GroupPreview = ({ group }) => {
   const dispatch = useDispatch()
   const board = useSelector(state => state.boardModule.board)
   const loggedUser = useSelector(state => state.userModule.loggedUser)
-  const [groupTitle, setTitle] = useState(group.title)
+  const [groupTitle, setGroupTitle] = useState(group.title)
+  const [taskTitle, setTaskTitle] = useState('')
   const titleRef = useRef()
 
   const onRemove = () => {
@@ -21,8 +22,17 @@ export const GroupPreview = ({ group }) => {
       alert('Log in first!')
   }
 
+  const taskHandleChange = (ev) => {
+    setTaskTitle(ev.target.value)
+  }
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault()
+    if (taskTitle) dispatch(addTask(board._id,group.id,loggedUser,taskTitle))
+  }
+
   const handleChange = (ev) => {
-    setTitle(ev.target.value)
+    setGroupTitle(ev.target.value)
   }
 
   const onBlur = () => {
@@ -43,13 +53,15 @@ export const GroupPreview = ({ group }) => {
       {group.tasks.length && <TaskList tasks={group.tasks} />}
 
       <div className="group-footer flex space-between">
-        <div className="add flex">
+        <div className="add">
+        <form onSubmit={handleSubmit} className="flex" action="">
 
-          <span className="add-btn flex center-center"
+          <button className="add-btn flex center-center"
           
-          >+</span>
+          >+</button>
 
-          <input className="add-input" placeholder="Add a task" type="text" />
+          <input onChange={taskHandleChange} value={taskTitle} className="add-input" placeholder="Add a task" type="text" />
+          </form>
         </div>
 
         <div className="av flex center-center">

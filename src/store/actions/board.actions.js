@@ -72,6 +72,17 @@ export function toggleFavorite(boardId, isWorkspace) {
     }
   };
 }
+
+export function toggleBoardMember(boardId,user) {
+  return async (dispatch) => {
+    try {
+      const board = await boardService.toggleBoardMember(boardId,user);
+      dispatch({ type: "SET_BOARD", board });
+    } catch (err) {
+      console.log("UserActions: err in remove board", err);
+    }
+  };
+}
 //group
 export function removeGroup(boardId, groupId) {
   return async (dispatch) => {
@@ -105,3 +116,18 @@ export function renameGroup(boardId, groupId, title) {
     }
   };
 }
+
+//task
+
+export function addTask(boardId, groupId, loggedUser,title) {
+  return async (dispatch) => {
+    try {
+      const board = await boardService.addTask(boardId, groupId, loggedUser,title);
+      dispatch({ type: "SET_BOARD", board });
+    } catch (err) {
+      console.log("UserActions: err in rename group", err);
+    }
+  };
+}
+
+

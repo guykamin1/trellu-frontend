@@ -8,8 +8,19 @@ const STORAGE_KEY = 'loggedinUser'
 export const userService = {
     login,
     logout,
-    signup
+    signup,
+    query
 }
+
+
+
+async function query(){
+    try{
+        return await httpService.get('user')
+    }catch(err){
+        throw(err)
+    }
+} 
 
 async function login(creds){
     try{

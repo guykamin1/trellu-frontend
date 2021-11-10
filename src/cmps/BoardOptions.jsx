@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux"
 import StarsIcon from '@mui/icons-material/Stars';
-import GroupIcon from '@mui/icons-material/Group';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import { BoardMenu } from "./BoardMenu";
 import { useState,useRef } from "react";
 import { useDispatch } from "react-redux";
 import { renameBoard,toggleFavorite } from "../store/actions/board.actions";
-
+import { TrelluMembersMenu } from "./TrelluMembersMenu";
 export const BoardOptions = () => {
 
     const dispatch = useDispatch()
@@ -47,7 +46,7 @@ export const BoardOptions = () => {
             }}
             onClick={onFavorite}
             /></span>
-            <span className="icon"><GroupIcon/></span>
+            <TrelluMembersMenu/>
 
         </div>
 

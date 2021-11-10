@@ -9,10 +9,13 @@ export const boardService = {
     add,
     renameBoard,
     toggleFavorite,
+    toggleBoardMember,
     //group
     removeGroup,
     addGroup,
     renameGroup,
+    //task
+    addTask
 }
 //board
 async function query(){
@@ -75,6 +78,24 @@ async function toggleFavorite(boardId){
     }
 } 
 
+async function toggleBoardMember(boardId,user){
+    try{
+        const board = await get(boardId)
+
+        const idx = board.members.findIndex(curr => curr._id === user._id)
+        
+        if (idx === -1) board.members.push(user)
+        else board.members.splice(idx,1)
+
+        return await httpService.put(`board`,board)
+        
+    }catch(err){
+        throw(err)
+    }
+} 
+
+
+
 
 //group
 async function removeGroup(boardId,groupId){
@@ -109,6 +130,19 @@ async function renameGroup(boardId,groupId,title){
         const board = await get(boardId)
         const idx = board.groups.findIndex(group => group.id === groupId)
         board.groups[idx].title = title
+        return await httpService.put(`board`,board)
+    }catch(err){
+        throw(err)
+    }
+} 
+
+async function addTask(boardId, groupId, loggedUser,title){
+    try{
+        const newTask = boardUtils.getTask(loggedUser)
+        newTask.title = title
+        const board = await get(boardId)
+        const idx = board.groups.findIndex(group => group.id === groupId)
+        board.groups[idx].tasks.unshift(newTask)
         return await httpService.put(`board`,board)
     }catch(err){
         throw(err)

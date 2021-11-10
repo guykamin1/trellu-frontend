@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { loadBoard } from "../store/actions/board.actions";
 import { GroupList } from "../cmps/GroupList";
 import { BoardOptions } from "../cmps/BoardOptions";
+import {loadUsers} from '../store/actions/user.actions'
+
 export const TrelluBoard = () => {
   const dispatch = useDispatch();
 
@@ -13,6 +15,7 @@ export const TrelluBoard = () => {
 
   useEffect(() => {
     dispatch(loadBoard(id));
+    dispatch(loadUsers());
   }, []);
 
   return (
