@@ -1,7 +1,7 @@
 import {TaskDetails} from './TaskDetails'
 import { useState } from 'react';
 
-export const TaskPreview = ({ task }) => {
+export const TaskPreview = ({ task,provided }) => {
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -13,7 +13,13 @@ export const TaskPreview = ({ task }) => {
     setIsOpen(false)
   }
 
-  return <section className="task-preview">
+  return <section 
+  
+  {...provided.draggableProps}
+  ref={provided.innerRef}
+  {...provided.dragHandleProps}
+  
+  className="task-preview">
     <div onClick={openDialog}>
     {task.title}
     </div>

@@ -51,7 +51,7 @@ export const BoardOptions = () => {
     return <section className="board-options flex space-between">
 
         <div className="options flex gap center-center">
-            <span class="title">
+            <span className="title">
             <input
             style={{
                 width:`${boardTitle?.length + 0.5}ch`

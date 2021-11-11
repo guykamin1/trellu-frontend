@@ -40,7 +40,7 @@ export const BoardList = ({ boards }) => {
         {(provided) => (
 
           
-          
+          <>
           <span
           ref={provided.innerRef}
           {...provided.droppableProps}
@@ -52,9 +52,11 @@ export const BoardList = ({ boards }) => {
           <BoardPreview idx={idx} board={board} />
           ))}
 
-          {provided.placeholder}
 
           </span>
+          <span>{provided.placeholder}</span>
+          </>
+         
           )}
 
           </Droppable>

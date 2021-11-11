@@ -128,12 +128,36 @@ export function renameGroup(boardId, groupId, title) {
   };
 }
 
+
+export function reorderGroups(id,groups) {
+  return async (dispatch) => {
+    try {
+      const board = await boardService.reorderGroups(id,groups);
+      dispatch({ type: "SET_BOARD", board });
+    } catch (err) {
+      console.log("UserActions: err in reorder groups", err);
+    }
+  };
+}
+
+
 //task
 
 export function addTask(boardId, groupId, loggedUser,title) {
   return async (dispatch) => {
     try {
       const board = await boardService.addTask(boardId, groupId, loggedUser,title);
+      dispatch({ type: "SET_BOARD", board });
+    } catch (err) {
+      console.log("UserActions: err in rename group", err);
+    }
+  };
+}
+
+export function reorderTasks(boardId, groupIdx,newTasks) {
+  return async (dispatch) => {
+    try {
+      const board = await boardService.reorderTasks(boardId, groupIdx,newTasks);
       dispatch({ type: "SET_BOARD", board });
     } catch (err) {
       console.log("UserActions: err in rename group", err);

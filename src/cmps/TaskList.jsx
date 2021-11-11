@@ -1,9 +1,25 @@
 import { TaskPreview } from "./TaskPreview";
-
-export const TaskList = ({ tasks }) => {
+import { Draggable } from "react-beautiful-dnd";
+export const TaskList = ({ tasks,groupId }) => {
   return (
-    <section className="task-list flex column gap">
-      {tasks && tasks.map((task) => <TaskPreview task={task} key={task.id} />)}
+    <section
+    
+   
+    className="task-list flex column gap">
+      {tasks && tasks.map((task,idx) =>
+
+        <Draggable key={task.id} draggableId={task.id+`$$${groupId}`} index={idx}>
+          {(provided)=>(
+
+            
+            <TaskPreview provided={provided} task={task} />
+
+          )}
+
+        </Draggable>
+
+
+       )}
     </section>
   );
 };

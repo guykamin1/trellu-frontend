@@ -15,8 +15,10 @@ export const boardService = {
     removeGroup,
     addGroup,
     renameGroup,
+    reorderGroups,
     //task
-    addTask
+    addTask,
+    reorderTasks
 }
 //board
 async function query(){
@@ -146,6 +148,16 @@ async function renameGroup(boardId,groupId,title){
     }
 } 
 
+async function reorderGroups(id,groups){
+    try{
+        const board = await get(id)
+        board.groups = groups
+        return await httpService.put(`board`,board)
+    }catch(err){
+        throw(err)
+    }
+} 
+//task
 async function addTask(boardId, groupId, loggedUser,title){
     try{
         const newTask = boardUtils.getTask(loggedUser)
@@ -153,6 +165,16 @@ async function addTask(boardId, groupId, loggedUser,title){
         const board = await get(boardId)
         const idx = board.groups.findIndex(group => group.id === groupId)
         board.groups[idx].tasks.unshift(newTask)
+        return await httpService.put(`board`,board)
+    }catch(err){
+        throw(err)
+    }
+} 
+
+async function reorderTasks(boardId, groupIdx,newTasks){
+    try{
+        const board = await get(boardId)
+        board.groups[groupIdx].tasks = newTasks
         return await httpService.put(`board`,board)
     }catch(err){
         throw(err)
