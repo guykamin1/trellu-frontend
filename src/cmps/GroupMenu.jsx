@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Menu, MenuItem } from "@mui/material";
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 
 export const GroupMenu = ({onRemove,titleRef}) => {
@@ -19,7 +19,7 @@ export const GroupMenu = ({onRemove,titleRef}) => {
 
   return (
     <>
-     <span onClick={handleClick}><MoreHorizIcon/></span>
+     <span onClick={handleClick}><MoreVertIcon/></span>
       <Menu
         id="group-menu"
         anchorEl={anchorEl}

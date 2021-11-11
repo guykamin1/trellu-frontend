@@ -12,7 +12,7 @@ export const TaskList = ({ tasks,groupId }) => {
           {(provided)=>(
 
             
-            <TaskPreview provided={provided} task={task} />
+            <TaskPreview groupId={groupId} provided={provided} task={task} />
 
           )}
 

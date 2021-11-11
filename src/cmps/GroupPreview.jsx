@@ -48,7 +48,7 @@ export const GroupPreview = ({ group ,provided}) => {
   }
 
   return (
-    <section className="group-preview flex column gap"
+    <section className="group-preview flex column gap space-between"
     {...provided.draggableProps}
         ref={provided.innerRef}
        
@@ -62,10 +62,14 @@ export const GroupPreview = ({ group ,provided}) => {
           ref={titleRef} onBlur={onBlur} onChange={handleChange} value={groupTitle} type="text" />
         </span>
 
-    <GroupMenu titleRef={titleRef} onRemove={onRemove}/>
+          <span className="options">
+
           <span  {...provided.dragHandleProps}>
     <DragIndicatorIcon/>
           </span>
+    <GroupMenu titleRef={titleRef} onRemove={onRemove}/>
+          </span>
+
 
       </div>
 

@@ -1,7 +1,7 @@
 import {Dialog} from '@material-ui/core'
 
 export const TaskDetails = ({isOpen,closeDialog}) => {
-    return <section className="task-details">
+    return <>
     <Dialog
 
       variant='temporary'
@@ -12,5 +12,5 @@ export const TaskDetails = ({isOpen,closeDialog}) => {
     >
         Details here
     </Dialog>
-    </section>
+    </>
 }

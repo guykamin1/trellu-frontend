@@ -79,7 +79,7 @@ export function toggleFavorite(boardId, isWorkspace) {
           dispatch({type:'SET_BOARDS',boards})
       }
     } catch (err) {
-      console.log("UserActions: err in remove board", err);
+      console.log("UserActions: err in toggle favorite", err);
     }
   };
 }
@@ -90,7 +90,7 @@ export function toggleBoardMember(boardId,user) {
       const board = await boardService.toggleBoardMember(boardId,user);
       dispatch({ type: "SET_BOARD", board });
     } catch (err) {
-      console.log("UserActions: err in remove board", err);
+      console.log("UserActions: err in toggle board member", err);
     }
   };
 }
@@ -149,7 +149,7 @@ export function addTask(boardId, groupId, loggedUser,title) {
       const board = await boardService.addTask(boardId, groupId, loggedUser,title);
       dispatch({ type: "SET_BOARD", board });
     } catch (err) {
-      console.log("UserActions: err in rename group", err);
+      console.log("UserActions: err in add task", err);
     }
   };
 }
@@ -160,7 +160,18 @@ export function reorderTasks(boardId, groupIdx,newTasks) {
       const board = await boardService.reorderTasks(boardId, groupIdx,newTasks);
       dispatch({ type: "SET_BOARD", board });
     } catch (err) {
-      console.log("UserActions: err in rename group", err);
+      console.log("UserActions: err in reorder task", err);
+    }
+  };
+}
+
+export function renameTask(boardId, groupId,taskId,title) {
+  return async (dispatch) => {
+    try {
+      const board = await boardService.renameTask(boardId, groupId,taskId,title);
+      dispatch({ type: "SET_BOARD", board });
+    } catch (err) {
+      console.log("UserActions: err in rename task", err);
     }
   };
 }
