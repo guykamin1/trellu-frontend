@@ -44,12 +44,7 @@ export const BoardMenu = ({titleRef}) => {
             }, 0);
         }}
         >Rename</MenuItem>
-        <MenuItem
-        onClick={()=>{
-          handleClose()
-          onRemove()
-        }}
-        >Remove</MenuItem>
+       
        
       </Menu>
     </>

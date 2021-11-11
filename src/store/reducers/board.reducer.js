@@ -11,7 +11,8 @@ export function boardReducer(state = initialState, action) {
       break;
 
     case "SET_BOARD":
-      newState = { ...state, board: action.board };
+      var boards = state.boards.map(board => board._id !== action.board._id ? board : action.board)
+      newState = { ...state, boards, board: action.board }
       break;
 
     case "ADD_BOARD":
@@ -23,8 +24,7 @@ export function boardReducer(state = initialState, action) {
         ...state,
         boards: state.boards.filter((board) => board._id !== action.board._id),
       };
-      if (action.board === state.board)
-        newState = {...state,board:null}
+   
       break;
 
     default:

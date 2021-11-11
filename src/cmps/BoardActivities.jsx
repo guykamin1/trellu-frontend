@@ -1,7 +1,7 @@
 import {Drawer} from '@material-ui/core'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 export const BoardActivities = ({isOpen,closeDrawer,openDrawer,board}) =>{
-
 
 
     return <>
@@ -15,7 +15,19 @@ export const BoardActivities = ({isOpen,closeDrawer,openDrawer,board}) =>{
     onClose={closeDrawer}
 
     >
-       activities here
+        <div className="title">
+            Activity Log
+        </div>
+       {
+           board?.activities?.length ? board?.activities?.map(activity =>
+            <div>
+                {
+                    activity.entity+' '+activity.action
+                }
+            </div>
+              ) : ''
+       }
+
     </Drawer>
     </>
 }

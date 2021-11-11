@@ -9,6 +9,14 @@ export const AddBoard = ({
   return (
     <section className="cmp">
       <div className="head flex">
+        <form 
+        onSubmit={(ev) => {
+          ev.preventDefault()
+          onAdd()
+        }}
+        
+        className="flex" action="">
+
         <input
           onChange={(ev) => {
             setBoardTitle(ev.target.value);
@@ -16,8 +24,8 @@ export const AddBoard = ({
           value={boardTitle}
           placeholder="Board title"
           type="text"
-        />
-        <button onClick={onAdd}>+</button>
+          />
+        <button>+</button>
         <button
           onClick={() => {
             setAddMode(false);
@@ -26,6 +34,8 @@ export const AddBoard = ({
         >
           x
         </button>
+          </form>
+       
       </div>
 
       <div className="body flex wrap">
