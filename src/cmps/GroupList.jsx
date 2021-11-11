@@ -12,10 +12,11 @@ export const GroupList = ({ groups,dropProvided}) => {
    const board = useSelector(state => state.boardModule.board)
    const loggedUser = useSelector(state => state.userModule.loggedUser)
 
-  const onAdd = () => {
+  const onAdd = (ev) => {
+    ev.preventDefault()
     if (title)
       dispatch(addGroup(board._id,title,loggedUser))
-
+      setAddGroup(false)
   }
 
   return (
@@ -52,11 +53,14 @@ export const GroupList = ({ groups,dropProvided}) => {
 
               </div>
               <div className="body flex column center-center">
+              <form onSubmit={onAdd} className="flex column center-center" action="">
 
             <input onChange={
               (ev) => {setTitle(ev.target.value)}
             } value={title} placeholder="Group title" type="text" />
-            <button onClick={onAdd}>Add</button>
+            <button>Add</button>
+            
+            </form>
            
             </div>
 

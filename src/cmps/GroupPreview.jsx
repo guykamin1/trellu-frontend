@@ -26,7 +26,7 @@ export const GroupPreview = ({ group ,provided}) => {
     const newTasks = [...board.groups[idx].tasks]
     const [reorderedTask] = newTasks.splice(source.index,1)
     newTasks.splice(destination.index,0,reorderedTask)
-    dispatch(reorderTasks(board._id,idx,newTasks))
+    dispatch(reorderTasks(board._id,idx,newTasks,loggedUser))
   }
   
 
@@ -36,7 +36,7 @@ export const GroupPreview = ({ group ,provided}) => {
 
   const handleSubmit = (ev) => {
     ev.preventDefault()
-    if (taskTitle) dispatch(addTask(board._id,group.id,loggedUser,taskTitle))
+     dispatch(addTask(board._id,group.id,loggedUser,taskTitle))
   }
 
   const handleChange = (ev) => {
@@ -44,7 +44,7 @@ export const GroupPreview = ({ group ,provided}) => {
   }
 
   const onBlur = () => {
-    dispatch(renameGroup(board._id,group.id,groupTitle))
+    dispatch(renameGroup(board._id,group.id,groupTitle,loggedUser))
   }
 
   return (

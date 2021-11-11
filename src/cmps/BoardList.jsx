@@ -21,7 +21,7 @@ export const BoardList = ({ boards }) => {
     const newBoards = [...boards] 
     const [reorderdBoard] = newBoards.splice(result.source.index,1)
     newBoards.splice(result.destination.index,0,reorderdBoard)
-    dispatch(reorderBoards(newBoards))
+    dispatch(reorderBoards(newBoards,loggedUser))
   }
 
   const onAdd = () => {

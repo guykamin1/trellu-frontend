@@ -12,6 +12,7 @@ export const TrelluBoard = () => {
   const dispatch = useDispatch();
 
   const board = useSelector((state) => state.boardModule.board);
+  const loggedUser = useSelector((state) => state.userModule.loggedUser);
   const history = useHistory();
   const { id } = useParams();
 
@@ -20,7 +21,7 @@ export const TrelluBoard = () => {
       const newGroups = [...board.groups]
       const [reorderedGroup] = newGroups.splice(source.index,1)
       newGroups.splice(destination.index,0,reorderedGroup)
-      dispatch(reorderGroups(board._id,newGroups))
+      dispatch(reorderGroups(board._id,newGroups,loggedUser))
       
   }
 

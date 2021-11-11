@@ -12,6 +12,7 @@ export const TrelluMembersMenu = () => {
   const [anchorEl, setAnchor] = useState(null);
     const users = useSelector(state => state.userModule.users)
     const board = useSelector(state => state.boardModule.board)
+    const loggedUser = useSelector(state => state.userModule.loggedUser)
     const dispatch = useDispatch()
 
   const handleClose = () => {
@@ -23,7 +24,7 @@ export const TrelluMembersMenu = () => {
   };
 
   const onToggleMember = (user) => {
-    dispatch(toggleBoardMember(board._id,user))
+    dispatch(toggleBoardMember(board._id,user,loggedUser))
   }
 
   const exist = (user) => {

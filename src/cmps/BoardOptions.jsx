@@ -15,6 +15,7 @@ export const BoardOptions = () => {
     const [isDialogOpen, setDialogOpen] = useState(false)
     const dispatch = useDispatch()
     const board = useSelector(state => state.boardModule.board)
+    const loggedUser = useSelector(state => state.userModule.loggedUser)
     const [boardTitle, setTitle] = useState(board?.title)
     const titleRef = useRef()
 
@@ -45,7 +46,7 @@ export const BoardOptions = () => {
     }
 
     const onBlur = () => {
-        dispatch(renameBoard(board._id,boardTitle))
+        dispatch(renameBoard(board._id,boardTitle,loggedUser))
     }
 
     return <section className="board-options flex space-between">

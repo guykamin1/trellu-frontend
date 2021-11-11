@@ -1,21 +1,22 @@
 import { TaskDetails } from "./TaskDetails";
-import { useState } from "react";
+import { useState,useRef } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import DragIndicator from "@mui/icons-material/DragIndicator";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { renameTask } from "../store/actions/board.actions";
+import { TaskMenu } from "./TaskMenu";
 export const TaskPreview = ({ task, provided,groupId }) => {
-
+  const titleRef = useRef()
   const [isOpen, setIsOpen] = useState(false);
   const [taskTitle, setTitle] = useState(task?.title);
    const dispatch = useDispatch()
   const board = useSelector(state => state.boardModule.board)
+  const loggedUser = useSelector(state => state.userModule.loggedUser)
   const openDialog = () => {
     setIsOpen(true);
   };
 
   const handleBlur = () => {
-    dispatch(renameTask(board._id,groupId,task.id,taskTitle))
+    dispatch(renameTask(board._id,groupId,task.id,taskTitle,loggedUser))
   }
 
   const handleChange = (ev) => {
@@ -35,6 +36,7 @@ export const TaskPreview = ({ task, provided,groupId }) => {
       >
         <div>
           <input
+          ref={titleRef}
           onBlur={handleBlur}
           onChange={handleChange}
             style={{
@@ -48,7 +50,7 @@ export const TaskPreview = ({ task, provided,groupId }) => {
           <span {...provided.dragHandleProps}>
             <DragIndicator />
           </span>
-          <MoreVertIcon onClick={openDialog} />
+            <TaskMenu openDialog={openDialog} taskId={task.id} groupId={groupId} titleRef={titleRef}/>
         </span>
       </section>
 

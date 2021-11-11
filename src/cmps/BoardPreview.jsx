@@ -12,15 +12,16 @@ import {Draggable} from 'react-beautiful-dnd'
 
 export const BoardPreview = ({ board,idx }) => {
   const history = useHistory();
+  const loggedUser = useSelector(state => state.userModule.loggedUser)
   const dispatch = useDispatch();
   const onRemove = (ev) => {
     ev.stopPropagation();
-    dispatch(removeBoard(board));
+    dispatch(removeBoard(board,loggedUser));
   };
 
   const onFavorite = (ev) => {
     ev.stopPropagation()
-    dispatch(toggleFavorite(board._id,true))
+    dispatch(toggleFavorite(board._id,true,loggedUser))
   }
 
   return (

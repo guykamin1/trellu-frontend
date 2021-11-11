@@ -19,7 +19,8 @@ export const boardService = {
     //task
     addTask,
     reorderTasks,
-    renameTask
+    renameTask,
+    removeTask
 }
 //board
 async function query(){
@@ -193,3 +194,31 @@ async function renameTask(boardId, groupId,taskId,title){
         throw(err)
     }
 } 
+
+async function removeTask(boardId, groupId,taskId){
+    try{
+        const board = await get(boardId)
+        const gIdx = board.groups.findIndex(group => group.id === groupId)
+        const tIdx = board.groups[gIdx].tasks.findIndex(task => task.id === taskId)
+        board.groups[gIdx].tasks.splice(tIdx,1)
+        return await httpService.put(`board`,board)
+    }catch(err){
+        throw(err)
+    }
+} 
+
+function _addActivity(board,entity,action,loggedUser){
+
+    if (board.activities.length === 50) board.activities = []
+
+    const activity = {
+        entity,
+        action,
+        loggedUser
+    }
+
+    board.activities.push(activity)
+
+    return board
+
+}
