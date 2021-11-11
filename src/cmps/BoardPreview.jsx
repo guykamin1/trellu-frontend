@@ -8,7 +8,9 @@ import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 import StarsIcon from "@mui/icons-material/Stars";
 
-export const BoardPreview = ({ board }) => {
+import {Draggable} from 'react-beautiful-dnd'
+
+export const BoardPreview = ({ board,idx }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const onRemove = (ev) => {
@@ -22,15 +24,38 @@ export const BoardPreview = ({ board }) => {
   }
 
   return (
-    <section
-      onClick={() => {
-        history.push(`/board/${board._id}`);
-      }}
-      className="board-preview"
-      style={{
-        backgroundImage: `url(${board.style.bgImg})`,
-      }}
-    >
+
+    <Draggable index={idx} key={board._id} draggableId={board._id}>
+
+       {(provided)=>(
+
+       
+        <span 
+        className="board-preview-draggable"
+        {...provided.draggableProps}
+        ref={provided.innerRef}
+        {...provided.dragHandleProps}
+        
+        >
+
+
+        <section
+        
+        
+        onClick={() => {
+          history.push(`/board/${board._id}`);
+        }}
+        className="board-preview"
+        
+        style={{
+          backgroundImage: `url(${board.style.bgImg})`
+        }}
+        
+        >
+
+
+
+
       {<span className="title">{board.title}</span>}
       <span>
         <button className="favorite">
@@ -39,16 +64,26 @@ export const BoardPreview = ({ board }) => {
             style={{
               color: `${board?.isFavorite ? "yellow" : "black"}`,
             }}
-          />
+            />
         </button>
         <button className="remove" onClick={onRemove}>
           <RemoveCircleIcon
             style={{
               color: "black",
             }}
-          />
+            />
         </button>
       </span>
+
+
+
     </section>
+
+            </span>
+
+)}
+             </Draggable>
+
+
   );
 };

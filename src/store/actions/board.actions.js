@@ -46,6 +46,17 @@ export function removeBoard(board) {
   };
 }
 
+export function reorderBoards(boards) {
+  return async (dispatch) => {
+    try {
+     const updatedBoards = await boardService.reorderBoards(boards)
+     dispatch({ type: "SET_BOARDS", boards:updatedBoards });
+    } catch (err) {
+      console.log("UserActions: err in reorder boards", err);
+    }
+  };
+}
+
 export function renameBoard(boardId, title) {
   return async (dispatch) => {
     try {

@@ -2,8 +2,9 @@ import { BoardPreview } from "./BoardPreview";
 import { useState } from "react";
 import { AddBoard } from "./AddBoard";
 import { useDispatch } from "react-redux";
-import { addBoard } from "../store/actions/board.actions";
+import { addBoard,reorderBoards } from "../store/actions/board.actions";
 import { useSelector } from "react-redux";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 export const BoardList = ({ boards }) => {
   const [isAddMode, setAddMode] = useState(false);
@@ -16,18 +17,49 @@ export const BoardList = ({ boards }) => {
 
   const [boardTitle, setBoardTitle] = useState("");
 
+  const handleDragEnd = (result) => {
+    const newBoards = [...boards] 
+    const [reorderdBoard] = newBoards.splice(result.source.index,1)
+    newBoards.splice(result.destination.index,0,reorderdBoard)
+    dispatch(reorderBoards(newBoards))
+  }
+
   const onAdd = () => {
-      if (boardTitle)
-       dispatch(addBoard(boardTitle, bg, loggedUser));
-       setAddMode(false)
-       setBg('')
+    if (boardTitle) dispatch(addBoard(boardTitle, bg, loggedUser));
+    setAddMode(false);
+    setBg("");
   };
 
   return (
-    <section className="board-list flex gap wrap">
-      {boards.sort((a,b) => b.isFavorite - a.isFavorite).map((board) => (
-        <BoardPreview board={board} key={board._id} />
-      ))}
+    <section className="board-list flex gap ">
+
+      <DragDropContext onDragEnd={handleDragEnd}>
+
+        <Droppable droppableId="boards">
+
+        {(provided) => (
+
+          
+          
+          <span
+          ref={provided.innerRef}
+          {...provided.droppableProps}
+          className="list flex gap">
+
+      {boards
+        .sort((a, b) => b.isFavorite - a.isFavorite)
+        .map((board, idx) => (
+          <BoardPreview idx={idx} board={board} />
+          ))}
+
+          {provided.placeholder}
+
+          </span>
+          )}
+
+          </Droppable>
+
+          </DragDropContext>
 
       <div
         className="add-board"

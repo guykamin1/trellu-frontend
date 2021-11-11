@@ -10,6 +10,7 @@ export const boardService = {
     renameBoard,
     toggleFavorite,
     toggleBoardMember,
+    reorderBoards,
     //group
     removeGroup,
     addGroup,
@@ -93,6 +94,15 @@ async function toggleBoardMember(boardId,user){
         throw(err)
     }
 } 
+
+async function reorderBoards(boards){
+    try{
+        return await httpService.put(`board/boards`,boards)
+    }catch(err){
+        throw(err)
+    }
+} 
+
 
 
 
